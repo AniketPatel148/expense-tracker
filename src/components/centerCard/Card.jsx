@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./Style";
+import Form from "./form/Form";
 
 const CenterCard = () => {
 	const classes = useStyles();
@@ -30,6 +31,7 @@ const CenterCard = () => {
 					Try doing something Shit!!
 				</Typography>
 				<Divider />
+				<Form />
 			</CardContent>
 			<CardContent className={classes.cartContent}>
 				<Grid container spacing={2}>
