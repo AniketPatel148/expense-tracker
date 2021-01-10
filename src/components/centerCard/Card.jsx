@@ -14,6 +14,7 @@ import CList from "./customList/CList";
 
 const CenterCard = () => {
 	const classes = useStyles();
+
 	return (
 		<Card className={classes.root}>
 			<CardHeader
