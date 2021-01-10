@@ -13,6 +13,10 @@ import { v4 as uuid4 } from "uuid";
 
 import useStyles from "./Style";
 import { useStateValue } from "../../../store/Store";
+import {
+	incomeCategories,
+	expenseCategories,
+} from "../../../constants/Constants";
 
 const initialState = {
 	type: "Income",
@@ -23,7 +27,7 @@ const initialState = {
 
 const Form = () => {
 	const classes = useStyles();
-	const [{ transactions }, dispatch] = useStateValue();
+	const [, dispatch] = useStateValue();
 
 	const [formData, setFormData] = useState(initialState);
 
@@ -40,6 +44,9 @@ const Form = () => {
 
 		setFormData(initialState);
 	};
+
+	const currentCategory =
+		formData.type === "Income" ? incomeCategories : expenseCategories;
 
 	return (
 		<Grid container spacing={2}>
@@ -69,8 +76,11 @@ const Form = () => {
 							setFormData({ ...formData, category: e.target.value })
 						}
 					>
-						<MenuItem value="business">Business</MenuItem>
-						<MenuItem value="salary">Salary</MenuItem>
+						{currentCategory.map((cat) => (
+							<MenuItem value={cat.type} key={cat.type}>
+								{cat.type}
+							</MenuItem>
+						))}
 					</Select>
 				</FormControl>
 			</Grid>
