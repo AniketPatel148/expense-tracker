@@ -13,33 +13,21 @@ import {
 import useStyles from "./Style";
 
 import { Delete, MoneyOff } from "@material-ui/icons";
+import { useStateValue } from "../../../store/Store";
 
 const CList = () => {
 	const classes = useStyles();
 
-	const transactions = [
-		{
-			id: 1,
-			type: "Income",
-			category: "Salary",
-			amount: 50,
-			date: "16 Thu 2020",
-		},
-		{
-			id: 1,
-			type: "Expense",
-			category: "Movies",
-			amount: 150,
-			date: "17 fri 2020",
-		},
-		{
-			id: 1,
-			type: "Income",
-			category: "Salary",
-			amount: 550,
-			date: "18 Sat 2020",
-		},
-	];
+	const [{ transactions }, dispatch] = useStateValue();
+
+	const deleteTransaction = (_id) => {
+		dispatch({
+			type: "DELETE_TRANSACTION",
+			id: _id,
+		});
+	};
+
+	console.log(transactions);
 
 	return (
 		<List dense={false} className={classes.list}>
@@ -68,7 +56,11 @@ const CList = () => {
 							secondary={`$${transaction.amount} - ${transaction.date}`}
 						/>
 						<ListItemSecondaryAction>
-							<IconButton edge="end" aria-label="delete" onClick="">
+							<IconButton
+								edge="end"
+								aria-label="delete"
+								onClick={() => deleteTransaction(transaction.id)}
+							>
 								<Delete />
 							</IconButton>
 						</ListItemSecondaryAction>
