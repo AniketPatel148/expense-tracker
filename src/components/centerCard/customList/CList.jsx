@@ -7,6 +7,7 @@ import {
 	Avatar,
 	ListItemSecondaryAction,
 	IconButton,
+	Slide,
 } from "@material-ui/core";
 
 import useStyles from "./Style";
@@ -17,7 +18,27 @@ const CList = () => {
 	const classes = useStyles();
 
 	const transactions = [
-		{ id: 1, type: "Income", category: "Salary", amount: 50, date: new Date() },
+		{
+			id: 1,
+			type: "Income",
+			category: "Salary",
+			amount: 50,
+			date: "16 Thu 2020",
+		},
+		{
+			id: 1,
+			type: "Expense",
+			category: "Movies",
+			amount: 150,
+			date: "17 fri 2020",
+		},
+		{
+			id: 1,
+			type: "Income",
+			category: "Salary",
+			amount: 550,
+			date: "18 Sat 2020",
+		},
 	];
 
 	return (
@@ -46,6 +67,11 @@ const CList = () => {
 							primary={transaction.category}
 							secondary={`$${transaction.amount} - ${transaction.date}`}
 						/>
+						<ListItemSecondaryAction>
+							<IconButton edge="end" aria-label="delete" onClick="">
+								<Delete />
+							</IconButton>
+						</ListItemSecondaryAction>
 					</ListItem>
 				</Slide>
 			))}

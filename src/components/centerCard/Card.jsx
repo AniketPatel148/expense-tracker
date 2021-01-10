@@ -10,6 +10,7 @@ import {
 
 import useStyles from "./Style";
 import Form from "./form/Form";
+import CList from "./customList/CList";
 
 const CenterCard = () => {
 	const classes = useStyles();
@@ -35,7 +36,9 @@ const CenterCard = () => {
 			</CardContent>
 			<CardContent className={classes.cartContent}>
 				<Grid container spacing={2}>
-					<Grid item xs={12}></Grid>
+					<Grid item xs={12}>
+						<CList />
+					</Grid>
 				</Grid>
 			</CardContent>
 		</Card>
