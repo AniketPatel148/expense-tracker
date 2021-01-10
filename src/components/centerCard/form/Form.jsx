@@ -10,6 +10,7 @@ import {
 	MenuItem,
 } from "@material-ui/core";
 import { v4 as uuid4 } from "uuid";
+import moment from "moment";
 
 import useStyles from "./Style";
 import { useStateValue } from "../../../store/Store";
@@ -17,12 +18,13 @@ import {
 	incomeCategories,
 	expenseCategories,
 } from "../../../constants/Constants";
+import formatDate from "../../../utils/formatDate";
 
 const initialState = {
 	type: "Income",
 	amount: "",
 	category: "",
-	date: new Date(),
+	date: formatDate(new Date()),
 };
 
 const Form = () => {
@@ -60,7 +62,12 @@ const Form = () => {
 					<InputLabel>Type</InputLabel>
 					<Select
 						value={formData.type}
-						onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+						onChange={(e) =>
+							setFormData({
+								...formData,
+								type: e.target.value,
+							})
+						}
 					>
 						<MenuItem value="Income">Income</MenuItem>
 						<MenuItem value="Expense">Expense</MenuItem>
@@ -99,7 +106,12 @@ const Form = () => {
 					label="Date"
 					fullWidth
 					value={formData.date}
-					onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+					onChange={(e) =>
+						setFormData({
+							...formData,
+							date: formatDate(e.target.value),
+						})
+					}
 				/>
 			</Grid>
 			<Button
